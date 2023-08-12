@@ -1,0 +1,76 @@
+{% load static %}
+<header class="navbar navbar-top navbar-expand-lg navbar-dark navbar-fixed">
+            <div class="container justify-content-between">
+                <a class="navbar-brand order-1" href="index.html">
+                    <img width="107" src="{% static 'assets/images/logo-white.svg' %}" alt="">
+                </a>
+                <a class="navbar-toggle order-4" href="#navbar-mobile-style-2" data-fancybox data-base-class="fancybox-navbar" data-keyboard="false" data-auto-focus="false" data-touch="false" data-close-existing="true" data-small-btn="false" data-toolbar="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <ul class="nav navbar-nav order-2">
+                    <li class="nav-item navbar-dropdown navbar-dropdown-mega">
+                        <a href="" class="nav-link">
+                            <span class="nav-link-name">Home</span>
+                            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 9L5 5L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="container">
+                                <ul role="menu" class="navbar-nav row gh-1 gv-3">
+                                    {% for demo in demos %}
+                                    <li class="col-md-6 col-lg-3 col-xl-2">
+                                        <span class="nav-item">
+                                            <a href="{{ demo.file_path }}" class="nav-link"><span class="nav-link-image"><img src="{{ demo.image.url }}" alt=""></span><span class="nav-link-name">main home</span>
+                                            </a>
+                                        </span>
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    {% for menu in menus %}
+                    <li class="nav-item navbar-dropdown">
+                        <a href="{{ menu.file_path }}" class="nav-link">
+                            <span class="nav-link-name">{{ menu.type }}</span>
+                            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 9L5 5L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="nav navbar-nav">
+                                {% for submenu in submenus %}
+                                <li class="nav-item navbar-dropdown">
+                                    <a href="{{ submenu.file_path }}" class="nav-link">
+                                        <span class="nav-link-name">{{ submenu.type }}</span>
+                                        <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 9L5 5L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <ul class="nav navbar-nav">
+                                            {% for dropdown_menu in dropdown_menus %}
+                                            <li class="nav-item">
+                                                <a href="{{ dropdown_menu.file_path }}" class="nav-link">
+                                                    <span class="nav-link-name">{{ dropdown_menu.type }}</span>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a class="d-none d-sm-inline-block btn btn-white btn-with-ball ms-auto me-40 ms-lg-60 me-lg-0 order-2 order-lg-3" href="https://themes.getbootstrap.com/product/themebau/"> purchase </a>
+                <a class="btn btn-white btn-link btn-clean d-sm-none order-2 ms-auto me-40 ms-lg-60 me-lg-0 text-decoration-none" href="https://themes.getbootstrap.com/product/themebau/"> purchase </a>
+            </div>
+        </header>
