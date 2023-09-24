@@ -905,48 +905,52 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-8 mt-5 mt-lg-0">
-                            <form action="#">
+                            <form action="{% url 'contact1' %}" method="post" >
+                                {% csrf_token %}
                                 <div class="row gh-1 gv-2">
                                     <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="100">
-                                        <input type="name" class="form-control" placeholder="Your Name *">
+                                        <input type="name" class="form-control" placeholder="Your Name *" name="name">
                                     </div>
                                     <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="150">
-                                        <input type="email" class="form-control" placeholder="Your Email *">
+                                        <input type="email" class="form-control" placeholder="Your Email *" name="email">
                                     </div>
                                     <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="200">
-                                        <input type="phone" class="form-control" placeholder="Your Phone *">
+                                        <input type="phone" class="form-control" placeholder="Your Phone *" name="phone">
                                     </div>
                                     <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="250">
-                                        <input type="company" class="form-control" placeholder="Company">
+                                        <input type="company" class="form-control" placeholder="Company" name="company">
                                     </div>
                                     <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="300">
                                         <select class="form-control">
                                             <option selected>Type of Project</option>
-                                            <option>Colibri Creative Project</option>
-                                            <option>Colibri Project</option>
-                                            <option>Happy Moments Photoset</option>
-                                            <option>Luxury Car Website</option>
-                                            <option>Funny Dog</option>
-                                            <option>Creative Branding</option>
+                                            <option value="calibri project">Calibri Creative Project</option>
+                                             <option value="calibri project">Calibri Project</option>
+                                             <option value="happy moment photoshoot">Happy Moments Photoset</option>
+                                             <option value="luxury car website">Luxury car website</option>
+                                             <option value="funny dog">Funny Dog</option>
+                                             <option value="creative branding">Creative Branding</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="350">
                                         <select class="form-control">
                                             <option selected>Your Budget</option>
-                                            <option>&lt; 10 000</option>
-                                            <option>10-20k</option>
-                                            <option>20-30k</option>
-                                            <option>&gt; 30 000</option>
+                                             <option value="<10,000"><10,000</option>
+                                             <option value="10-20k">10-20K</option>
+                                             <option value="20-30k">20-30K</option>
+                                             <option value=">30k">>30K</option>
                                         </select>
                                     </div>
                                     <div class="col-12 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="400">
-                                        <input type="text" class="form-control" placeholder="Title">
+                                        <input type="text" class="form-control" placeholder="Title" name="title">
                                     </div>
                                     <div class="col-12 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="450">
-                                        <textarea class="form-control" rows="1" placeholder="Message *"></textarea>
+                                        <textarea class="form-control" rows="1" placeholder="Message *" name="message"></textarea>
                                     </div>
                                     <div class="col-12 show-on-scroll" data-show-duration="400" data-show-distance="10" data-show-delay="470">
-                                        <button class="btn btn-dark btn-with-ball mt-20" type="button" name="button">submit</button>
+                                        <button class="btn btn-dark btn-with-ball mt-20" type="submit" name="button">submit</button>
+                                          {% for message in messages %}
+                                             {{ message }}
+                                          {% endfor %}
                                     </div>
                                 </div>
                             </form>

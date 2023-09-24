@@ -1,5 +1,5 @@
+{% extends 'base.html' %}
 {% load static %}
-{% include 'base.html' %}
 {% block main_container %}
 
     {% include 'header.html' %}
@@ -434,10 +434,11 @@
             </div>
             <div class="py-160">
                 <div class="container">
+                    {% for layout in layout %}
                     <div class="row gh-1 gv-2 align-items-center mb-100">
                         <div class="col-12 col-lg-5 d-flex flex-column align-items-lg-end">
-                            <img class="w-100 h-100 mb-30 mb-lg-0 box-shadow show-on-scroll" src="{{ layout.image1.url }}" alt="" data-show-duration="600" data-show-distance="40" data-show-origin="left" data-show-delay="400">
-                            <img class="mw-100 mt-lg-n70 me-lg-n100 box-shadow show-on-scroll" width="370" src="{{ layout.image2.url }}" alt="" data-show-duration="600" data-show-distance="40" data-show-origin="left" data-show-delay="550">
+                            <img class="w-100 h-100 mb-30 mb-lg-0 box-shadow show-on-scroll" src={{ layout.image1.url }} alt="" data-show-duration="600" data-show-distance="40" data-show-origin="left" data-show-delay="400">
+                            <img class="mw-100 mt-lg-n70 me-lg-n100 box-shadow show-on-scroll" width="370" src={{ layout.image2.url }} alt="" data-show-duration="600" data-show-distance="40" data-show-origin="left" data-show-delay="550">
                         </div>
                         <div class="col-lg-2 d-none d-lg-block"></div>
                         <div class="col-12 col-lg-4">
@@ -446,10 +447,11 @@
                             <a href="{{ layout.file_path }}" class="btn btn-dark btn-with-ball show-on-scroll" data-show-duration="500" data-show-distance="20" data-show-origin="right" data-show-delay="200">{{ layout.button_text }}</a>
                         </div>
                     </div>
+                    {% endfor %}
                     <div class="row gh-1 gv-1 justify-content-center">
                         {% for layoutPage in layoutPages %}
                         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 show-on-scroll" data-show-duration="500" data-show-distance="20" data-show-delay="250">
-                            <a href="{{ layout.file_path }}" class="card card-demo">
+                            <a href={{ layout.file_path }} class="card card-demo">
                                 <span class="card-img d-flex align-items-center justify-content-center flex-column">
                                     <span class="p-18">
                                         <svg width="134" height="109" viewBox="0 0 134 109" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -479,13 +481,15 @@
                     <div class="container">
                         <div class="swiper-container overflow-initial">
                             <div class="swiper-wrapper align-items-center">
-                                {% for showcase in showcases %}
+                                {%for showcase in showcases %}
+
                                 <div class="swiper-slide w-sm-auto">
                                     <a href="{{ showcase.file_path }}">
                                         <img class="mw-100" width="500" src="{{ showcase.image.url }}" alt="">
                                     </a>
                                 </div>
-                               {% endfor %}
+                                {%endfor%}
+
                             </div>
                         </div>
                         <div class="swiper-scrollbar"></div>
@@ -502,7 +506,7 @@
                         </div>
                         <div class="col-lg-2 d-none d-xl-block"></div>
                         <div class="col-lg-5 col-xl-4 show-on-scroll" data-show-duration="500" data-show-distance="20" data-show-delay="200" data-show-origin="right">
-                            <p class="mt-n6 mb-0">{{ website.innerPage_subtitle }}</p>
+                            <p class="mt-n6 mb-0">{{ website.innerPage_Subtitle }}</p>
                         </div>
                     </div>
                     <div class="row gh-1 gv-3 text-center">
@@ -554,7 +558,7 @@
                             <p class="mb-12 show-on-scroll" data-show-duration="500" data-show-distance="10" data-show-delay="150">{{  website.device_support_subtitle }}</p>
                         </div>
                         <div class="col-lg-6 order-lg-1 show-on-scroll" data-show-duration="800" data-show-distance="50" data-show-delay="200">
-                            <img class="w-100 mb-n60" src="{{ website.device_support_image }}" alt="">
+                            <img class="w-100 mb-n60" src="{{ website.device_support_image.url }}" alt="">
                         </div>
                     </div>
                 </div>

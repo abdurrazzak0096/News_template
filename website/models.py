@@ -44,7 +44,6 @@ class MenuStyle(models.Model):
     file_path = models.CharField(max_length=50)
 
 
-
 class Contact1(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
@@ -59,14 +58,29 @@ class Contact1(models.Model):
         return self.name
 
 
+class Contact2(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    company = models.CharField(max_length=100)
+    budget = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
 class Menu(models.Model):
     type = models.CharField(max_length=20)
     is_active = models.BooleanField(default=True)
     file_path = models.CharField(max_length=50)
 
     def __str__(self):
-
         return self.type
+
+    def get_submenu(self):
+        return self.submenu_set.filter(is_active=True)
 
 
 class Submenu(models.Model):
@@ -78,8 +92,11 @@ class Submenu(models.Model):
     def __str__(self):
         return self.type
 
+    def get_dropdownmenu(self):
+        return self.dropdownmenu_set.filter(is_active=True)
 
-class DropdownMenu(models.Model):
+
+class Dropdownmenu(models.Model):
     submenu = models.ForeignKey(Submenu, on_delete=models.CASCADE)
     type = models.CharField(max_length=20)
     is_active = models.BooleanField(True)

@@ -23,7 +23,7 @@
                                     {% for demo in demos %}
                                     <li class="col-md-6 col-lg-3 col-xl-2">
                                         <span class="nav-item">
-                                            <a href="{{ demo.file_path }}" class="nav-link"><span class="nav-link-image"><img src="{{ demo.image.url }}" alt=""></span><span class="nav-link-name">main home</span>
+                                            <a href="{{ demo.file_path }}" class="nav-link"><span class="nav-link-image"><img src="{{ demo.image.url }}" alt=""></span><span class="nav-link-name">{{ demo.title }}</span>
                                             </a>
                                         </span>
                                     </li>
@@ -44,6 +44,8 @@
                         <div class="dropdown-menu">
                             <ul class="nav navbar-nav">
                                 {% for submenu in submenus %}
+                                {% if submenu in menu.get_submenu %}
+
                                 <li class="nav-item navbar-dropdown">
                                     <a href="{{ submenu.file_path }}" class="nav-link">
                                         <span class="nav-link-name">{{ submenu.type }}</span>
@@ -53,16 +55,17 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <ul class="nav navbar-nav">
-                                            {% for dropdown_menu in dropdown_menus %}
+                                            {% if dropdownmenu in submenu.get_dropdownmenu %}
                                             <li class="nav-item">
-                                                <a href="{{ dropdown_menu.file_path }}" class="nav-link">
-                                                    <span class="nav-link-name">{{ dropdown_menu.type }}</span>
+                                                <a href="{{ dropdownmenu.file_path }}" class="nav-link">
+                                                    <span class="nav-link-name">{{ dropdownmenu.type }}</span>
                                                 </a>
                                             </li>
-                                            {% endfor %}
+                                            {% endif %}
                                         </ul>
                                     </div>
                                 </li>
+                                {% endif %}
                                 {% endfor %}
 
                             </ul>

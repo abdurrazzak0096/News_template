@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from website import forms
 from website.models import Demo, WebsiteSettings, Showcase, InnerPage, MenuStyle, Menu, Submenu, LayoutPage, \
- DropdownMenu
+ Dropdownmenu
 
 
 class HomeView(TemplateView):
@@ -21,20 +21,44 @@ class HomeView(TemplateView):
         context['menuStyles'] = MenuStyle.objects.all()
         context['menus'] = Menu.objects.filter(is_active=True)
         context['submenus'] = Submenu.objects.filter(is_active=True)
-        context['dropdownMenus'] = DropdownMenu.objects.filter(is_active=True)
+        context['dropdownmenus'] = Dropdownmenu.objects.filter(is_active=True)
 
         return context
 
 
-class ContactView(View):
+class Contact1View(View):
     def post(self, request):
-        form = forms.ContactForm(data=request.POST)
+        form = forms.Contact1Form(data=request.POST)
+        name = form.data['name']
+        phone = form.data['phone']
+        email = form.data['email']
+        company = form.data['company']
+        title = form.data['title']
+        message = form.data['message']
         if form.is_valid():
             form.save()
             messages.success(request, "Your data has been successfully saved")
         else:
             messages.error(request, "Invalid data! please try again.")
         return redirect('/')
+
+
+class Contact2View(View):
+    def post(self, request):
+        form = forms.Contact2Form(data=request.POST)
+        name = form.data['name']
+        phone = form.data['phone']
+        email = form.data['email']
+        company = form.data['company']
+        title = form.data['title']
+        message = form.data['message']
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your data has been successfully saved")
+        else:
+            messages.error(request, "Invalid data! please try again.")
+        return redirect('/')
+
 
 
 class PortfolioView(View):
@@ -182,7 +206,87 @@ class PortfolioSingleStyle6View(View):
         return render(request, 'portfolio-single-style-6.html')
 
 
-class PortfolioSingleStyle6View(View):
+class PortfolioCol1Style1View(View):
     def get(self, request):
-        return render(request, 'portfolio-single-style-6.html')
+        return render(request, 'portfolio-col-1-style-1.html')
+
+
+class PortfolioCol1Style2View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-1-style-2')
+
+
+class PortfolioCol2Style1View(View):
+        def get(self, request):
+            return render(request, 'portfolio-col-2-style-1')
+
+
+class PortfolioCol2Style2View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-2-style-2')
+
+
+class PortfolioCol2Style3View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-2-style-3')
+
+
+class PortfolioCol2Style4View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-2-style-4')
+
+
+class PortfolioCol2Style5View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-2-style-5')
+
+
+class PortfolioCol2Style6View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-2-style-6')
+
+
+class PortfolioCol3Style1View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-3-style-1')
+
+
+class PortfolioCol3Style2View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-3-style-2')
+
+
+class PortfolioCol3Style3View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-3-style-3')
+
+
+class PortfolioCol3Style4View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-3-style-4')
+
+
+class PortfolioCol3Style5View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-3-style-5')
+
+
+class PortfolioCol4Style1View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-4-style-1')
+
+
+class PortfolioCol4Style2View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-4-style-2')
+
+
+class PortfolioCol4Style3View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-4-style-3')
+
+
+class PortfolioCol4Style4View(View):
+    def get(self, request):
+        return render(request, 'portfolio-col-4-style-4')
 
